@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageTrigger : MonoBehaviour
 {
     public float damage;
+    public bool damagePlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +21,13 @@ public class DamageTrigger : MonoBehaviour
     void OnTriggerEnter(Collider col) {
         
         if (col.gameObject.TryGetComponent<Actor>(out var a)) {
-            Debug.Log("Dealing damage");
-            a.TakeDamage(damage);
+            if (damagePlayer && col.gameObject.CompareTag("Player")) {
+                Debug.Log("Dealing damage");
+                a.TakeDamage(damage);
+            } else if (!damagePlayer && !col.gameObject.CompareTag("Player")) {
+                Debug.Log("Dealing damage");
+                a.TakeDamage(damage);
+            }
         }
     }
 }

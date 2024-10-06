@@ -165,7 +165,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: SetAttackComboCount
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -204,7 +212,7 @@ ModelImporter:
       takeName: Armature|melee_atkA01
       internalID: 2170319388789681894
       firstFrame: 0
-      lastFrame: 10
+      lastFrame: 16
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -277,6 +285,22 @@ ModelImporter:
         messageOptions: 0
       - time: 1
         functionName: HatchetSmearHandler
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.19607843
+        functionName: SetDamageTriggerActive
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.50140053
+        functionName: SetDamageTriggerActive
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
           type: 3}
@@ -385,6 +409,118 @@ ModelImporter:
           type: 3}
         floatParameter: 0
         intParameter: 1
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|melee_atkA02
+      takeName: Armature|melee_atkA02
+      internalID: -8387742991249273174
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: SmearOpacity
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0.02
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.23018056
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.45
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events:
+      - time: 0
+        functionName: HatchetSmearHandler
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 1
+        functionName: HatchetSmearHandler
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: SetAttackComboCount
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.232493
+        functionName: SetDamageTriggerActive
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.51540613
+        functionName: SetDamageTriggerActive
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
         messageOptions: 0
       transformMask: []
       maskType: 3

@@ -43,6 +43,15 @@ public class PlayerAttackSystem : MonoBehaviour
     }
 
     void Slash() {
-        playerAnimations.anim.CrossFade("melee_atkA01", 0, 0);
+        
+        if (playerAnimations.anim.GetInteger("AttackComboCount") == 0) {
+            playerAnimations.anim.SetInteger("AttackComboCount", 1);
+            playerAnimations.anim.CrossFade("melee_atkA01", 0, 0);
+
+
+        } else {
+            Debug.Log("test");
+            playerAnimations.anim.SetInteger("AttackComboCount", 2);
+        }
     }
 }

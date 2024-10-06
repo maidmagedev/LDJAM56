@@ -12,6 +12,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     [SerializeField] Movement movement;
     bool muzzleHandler;
     bool smearHandler;
+    [SerializeField] GameObject playerDamageTrigger;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void MuzzleFlashHandler(int on) {
@@ -96,5 +97,14 @@ public class PlayerAnimationEvents : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    void SetAttackComboCount(int count) {
+        animator.SetInteger("AttackComboCount", count);
+    }
+
+    void SetDamageTriggerActive(int setting) {
+        playerDamageTrigger.SetActive(setting == 1);
+
     }
 }
