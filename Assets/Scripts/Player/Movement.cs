@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
     public Transform orientation;
+    public Transform facingDirection;
     
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,11 @@ public class Movement : MonoBehaviour
 
     void MovePlayer() {
         Vector3 moveDirection = verticalInput * orientation.forward + horizontalInput * orientation.right;
-        if (moveDirection == Vector3.zero) return;
+        if (moveDirection == Vector3.zero) {
+            return;
+        } else {
+            facingDirection.forward = moveDirection;
+        }
 
         rb.AddForce(moveDirection.normalized * (10 * movementForce), ForceMode.VelocityChange);
     }
