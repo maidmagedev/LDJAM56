@@ -567,7 +567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.44721362, y: 0.000000015389857, z: -0.000000007694929, w: 0.89442724}
+  m_LocalRotation: {x: 0.44721362, y: -0.000000015389855, z: 0.000000007694927, w: 0.89442724}
   m_LocalPosition: {x: 0, y: 16, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1454,6 +1454,7 @@ MonoBehaviour:
   verticalInput: 0
   orientation: {fileID: 2030182334}
   facingDirection: {fileID: 1443629848}
+  allowMovement: 1
 --- !u!114 &568903339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,6 +1471,7 @@ MonoBehaviour:
   cursor: {fileID: 725270021}
   movement: {fileID: 568903338}
   facingDirection: {fileID: 1443629848}
+  lookOverride: 0
 --- !u!114 &568903340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2441,7 +2443,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
@@ -2563,7 +2565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240062847}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.44721362, y: 0.000000015389857, z: -0.000000007694929, w: 0.89442724}
+  m_LocalRotation: {x: 0.44721362, y: -0.000000015389855, z: 0.000000007694927, w: 0.89442724}
   m_LocalPosition: {x: 0, y: 16, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3609,13 +3611,18 @@ PrefabInstance:
     - target: {fileID: -765011315723546343, guid: 713b0ddcabc1bad4e85de10efd223415,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -126732246177037048, guid: 713b0ddcabc1bad4e85de10efd223415,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c85c1c6c5a6dac1479e9b61c2416563f, type: 2}
+    - target: {fileID: -39382649941152895, guid: 713b0ddcabc1bad4e85de10efd223415,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 751ab9657b1331d48b0e34e12730d460, type: 2}
     - target: {fileID: 919132149155446097, guid: 713b0ddcabc1bad4e85de10efd223415,
         type: 3}
       propertyPath: m_Name
@@ -3670,7 +3677,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzleFlash: {fileID: 2100000, guid: c85c1c6c5a6dac1479e9b61c2416563f, type: 2}
+  hatchetSmear: {fileID: 2100000, guid: 751ab9657b1331d48b0e34e12730d460, type: 2}
   animator: {fileID: 2102232429}
+  playerOrientation: {fileID: 568903339}
+  movement: {fileID: 568903338}
 --- !u!1 &2121946181
 GameObject:
   m_ObjectHideFlags: 0

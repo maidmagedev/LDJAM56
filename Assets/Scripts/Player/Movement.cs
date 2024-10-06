@@ -18,6 +18,8 @@ public class Movement : MonoBehaviour
     public float verticalInput;
     public Transform orientation;
     public Transform facingDirection;
+
+    public bool allowMovement = true;
     
     // Start is called before the first frame update
     void Start()
@@ -33,7 +35,9 @@ public class Movement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        MovePlayer();
+        if (allowMovement) {
+            MovePlayer();
+        }
     }
 
     void MovePlayer() {

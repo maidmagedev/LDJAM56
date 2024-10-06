@@ -6,9 +6,12 @@ using UnityEngine;
 public class PlayerAnimationEvents : MonoBehaviour
 {
     [SerializeField] Material muzzleFlash;
+    [SerializeField] Material hatchetSmear;
     [SerializeField] Animator animator;
     [SerializeField] PlayerOrientation playerOrientation;
+    [SerializeField] Movement movement;
     bool muzzleHandler;
+    bool smearHandler;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +29,11 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     void MuzzleFlashHandler(int on) {
         if (on == 1) {
+            SetAllowMovement(false);
             muzzleHandler = true;
             StartCoroutine(FlashHandlerCoroutine());
         } else {
+            SetAllowMovement(true);
             muzzleHandler = false;
         }
     }
@@ -43,5 +48,45 @@ public class PlayerAnimationEvents : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         playerOrientation.lookOverride = false;
+    }
+
+    void HatchetSmearHandler(int on) {
+        if (on == 1) {
+            smearHandler = true;
+            SetAllowMovement(false);
+            StartCoroutine(SmearHandlerCoroutine());
+            StartCoroutine(PushPlayer(0.15f, 12));
+        } else {
+            SetAllowMovement(true);
+            smearHandler = false;
+        }
+    }
+
+    IEnumerator SmearHandlerCoroutine() {
+        playerOrientation.lookOverride = true;
+        while(smearHandler) {
+            //playerOrientation.playerObj.LookAt(playerOrientation.cursor.position + new Vector3(0f, 1f, 0f));
+            Color temp = hatchetSmear.color;
+            temp.a = animator.GetFloat("SmearOpacity");
+            hatchetSmear.color = temp;
+            yield return new WaitForEndOfFrame();
+        }
+        playerOrientation.lookOverride = false;
+    }
+
+    void SetAllowMovement(bool on) {
+        movement.allowMovement = on;
+    }
+
+    IEnumerator PushPlayer(float duration, float force) {
+        float elapsedTime = 0.0f;
+        while(elapsedTime < duration) {
+            Vector3 flatLook = new Vector3(playerOrientation.playerObj.forward.x, 0, playerOrientation.playerObj.forward.z);
+            playerOrientation.playerObj.LookAt(playerOrientation.cursor.position + new Vector3(0f, 1f, 0f));
+            movement.rb.AddForce(force * flatLook.normalized, ForceMode.Impulse);
+
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
     }
 }
