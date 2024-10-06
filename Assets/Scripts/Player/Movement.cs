@@ -28,7 +28,6 @@ public class Movement : MonoBehaviour
     void Update()
     {
         InputHandler();
-
         SpeedCap();
     }
 
@@ -37,20 +36,23 @@ public class Movement : MonoBehaviour
     }
 
     void MovePlayer() {
-        Vector3 moveDirection = horizontalInput * orientation.right + verticalInput * orientation.forward;
+        Vector3 moveDirection = verticalInput * orientation.forward + horizontalInput * orientation.right;
+        if (moveDirection == Vector3.zero) return;
 
-        rb.AddForce(moveDirection * movementForce * 10, ForceMode.Force);
+        rb.AddForce(moveDirection.normalized * (10 * movementForce), ForceMode.VelocityChange);
     }
 
     void InputHandler() {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
         
     }
 
     void SpeedCap() {
+        Vector3 flatvelocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
         if (rb.velocity.magnitude > maxVelocity) {
-            rb.velocity = rb.velocity.normalized * maxVelocity;
+            Vector3 cappedVelocity = rb.velocity.normalized * maxVelocity;
+            rb.velocity = cappedVelocity;
         }
     }
 
