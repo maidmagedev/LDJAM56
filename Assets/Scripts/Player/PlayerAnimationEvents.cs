@@ -7,7 +7,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 {
     [SerializeField] Material muzzleFlash;
     [SerializeField] Material hatchetSmear;
-    [SerializeField] Animator animator;
+    public Animator animator;
     [SerializeField] PlayerOrientation playerOrientation;
     [SerializeField] Movement movement;
     bool muzzleHandler;
@@ -76,6 +76,14 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     void SetAllowMovement(bool on) {
         movement.allowMovement = on;
+    }
+
+    void SetAllowMovementI(int on) {
+        if (on == 1) {
+            movement.allowMovement = true;
+        } else {
+            movement.allowMovement = false;
+        }
     }
 
     IEnumerator PushPlayer(float duration, float force) {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : Actor
 {
+    public PlayerAnimationEvents playerAnimationEvents;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,9 @@ public class PlayerHealth : Actor
     void Update()
     {
         
+    }
+
+    public override void OnTakeDamage(float damage) {
+        playerAnimationEvents.animator.CrossFade("takeDamage", 0, 0);
     }
 }

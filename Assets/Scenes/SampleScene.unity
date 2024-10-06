@@ -1487,6 +1487,8 @@ MonoBehaviour:
   currHealth: 0
   maxHealth: 100
   isAlive: 1
+  onHitInvulnerability: 0
+  playerAnimationEvents: {fileID: 2102232430}
 --- !u!114 &568903341
 MonoBehaviour:
   m_ObjectHideFlags: 0
