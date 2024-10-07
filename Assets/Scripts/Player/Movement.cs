@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -18,13 +19,15 @@ public class Movement : MonoBehaviour
     public float verticalInput;
     public Transform orientation;
     public Transform facingDirection;
+    public PlayerHealth playerHealth;
 
     public bool allowMovement = true;
+    public bool isDashing;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (playerHealth == null) playerHealth = FindObjectOfType<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class Movement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (allowMovement) {
+        if (allowMovement && !isDashing) {
             MovePlayer();
         }
     }
@@ -55,9 +58,13 @@ public class Movement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
         
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing) {
+            StartCoroutine(Dash());
+        }
     }
 
     void SpeedCap() {
+        if (isDashing) return;
         Vector3 flatvelocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
         if (rb.velocity.magnitude > maxVelocity) {
             Vector3 cappedVelocity = rb.velocity.normalized * maxVelocity;
@@ -65,4 +72,20 @@ public class Movement : MonoBehaviour
         }
     }
 
+    IEnumerator Dash() {
+        isDashing = true;
+        float elapsedTime = 0.0f;
+        
+        Vector3 moveDirection = verticalInput * orientation.forward + horizontalInput * orientation.right;
+        playerHealth.invuln = true;
+        if (moveDirection == Vector3.zero) moveDirection = facingDirection.forward;
+        rb.AddForce(moveDirection.normalized * 35, ForceMode.Impulse);
+        while (elapsedTime < 0.25f) {
+            
+            yield return new WaitForFixedUpdate();
+            elapsedTime += Time.deltaTime;
+        }
+        playerHealth.invuln = false;
+        isDashing = false;
+    }
 }

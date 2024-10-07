@@ -7,12 +7,15 @@ public class PlayerAttackSystem : MonoBehaviour
     public Transform cursor;
     public LayerMask damagedLayer;
     public PlayerAnimations playerAnimations;
+    public Movement movement;
     // Start is called before the first frame update
     void Start()
     {
         if (cursor == null) {
             cursor = FindObjectOfType<MousePositionHandler>().transform;
         }
+
+        if (movement == null) movement = FindObjectOfType<Movement>();
     }
 
     // Update is called once per frame
@@ -20,6 +23,7 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         Debug.DrawRay(transform.position, (cursor.position + new Vector3(0, 1, 0) - transform.position).normalized * 100, Color.red);
         if (Input.GetMouseButtonDown(0)) {
+            if (movement.isDashing) return;
             Slash();
         }
 

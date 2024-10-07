@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealth : Actor
 {
     public PlayerAnimationEvents playerAnimationEvents;
+    
     // Start is called before the first frame update
     void Start()
     {

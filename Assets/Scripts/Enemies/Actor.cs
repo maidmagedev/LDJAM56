@@ -8,6 +8,7 @@ public abstract class Actor : MonoBehaviour
     public float maxHealth = 0;
     public bool isAlive = true;
     public bool onHitInvulnerability;
+    public bool invuln;
 
     void Start() {
         InitialSetup();
@@ -19,6 +20,7 @@ public abstract class Actor : MonoBehaviour
 
     public void TakeDamage(float damage) {
         if (onHitInvulnerability) return;
+        if (invuln) return;
         OnTakeDamage(damage);
         Debug.Log("damage taken: " + damage);
         currHealth -= damage;
