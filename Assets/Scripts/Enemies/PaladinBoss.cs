@@ -24,7 +24,14 @@ public class PaladinBoss : Actor
 
     public override void OnTakeDamage(float damage)
     {
-        
+        if (mode == Mode.idling || mode == Mode.moving) {
+            anim.CrossFade("TakeDamage", 0, 0);
+        }
+    }
+
+    public override void OnDeath()
+    {
+        anim.CrossFade("Die", 0, 0);
     }
 
     // Start is called before the first frame update
@@ -37,6 +44,7 @@ public class PaladinBoss : Actor
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) return;
         if (mode == Mode.idling) {
             idlingTime += Time.deltaTime;
             if (idlingTime > targetIdleTime) {

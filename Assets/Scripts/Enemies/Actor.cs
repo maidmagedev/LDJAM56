@@ -43,9 +43,11 @@ public abstract class Actor : MonoBehaviour
     }
 
     public abstract void OnTakeDamage(float damage);
+    public abstract void OnDeath();
 
     public void Die() {
         Debug.Log("die");
         isAlive = false;
+        OnDeath();
     }
 }

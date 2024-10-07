@@ -8,6 +8,7 @@ public class PlayerAttackSystem : MonoBehaviour
     public Transform cursor;
     public LayerMask damagedLayer;
     public PlayerAnimations playerAnimations;
+    public PlayerHealth playerHealth;
     public Movement movement;
     public int bullets = 6;
     float reloadTime = 2.0f;
@@ -21,6 +22,8 @@ public class PlayerAttackSystem : MonoBehaviour
         }
 
         if (movement == null) movement = FindObjectOfType<Movement>();
+
+        if (playerHealth == null) playerHealth = FindObjectOfType<PlayerHealth>();
     }
 
     // Update is called once per frame

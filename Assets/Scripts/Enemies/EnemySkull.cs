@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemySkull : Actor
 {
+    public override void OnDeath()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void OnTakeDamage(float damage)
     {
         //throw new System.NotImplementedException();

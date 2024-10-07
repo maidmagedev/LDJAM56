@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         if (playerHealth == null) playerHealth = FindObjectOfType<PlayerHealth>();
+        
         dashCount = 3;
     }
 
@@ -61,6 +62,7 @@ public class Movement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
         
         if (Input.GetKeyDown(KeyCode.Space) && !isDashing && dashCount > 0) {
+            if (playerHealth.timeSinceTakingDamage < 1.0f) return;
             StartCoroutine(Dash());
         }
     }
