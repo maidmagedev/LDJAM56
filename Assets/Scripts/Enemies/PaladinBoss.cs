@@ -24,6 +24,7 @@ public class PaladinBoss : Actor
 
     public override void OnTakeDamage(float damage)
     {
+        if (!isAlive) return;
         if (mode == Mode.idling || mode == Mode.moving) {
             anim.CrossFade("TakeDamage", 0, 0);
         }

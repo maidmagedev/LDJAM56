@@ -61,7 +61,7 @@ public class PlayerAttackSystem : MonoBehaviour
         Ray ray = new(transform.position, (cursor.position + new Vector3(0, 1, 0) - transform.position).normalized);
         if (Physics.Raycast(transform.position, (cursor.position + new Vector3(0, 1, 0) - transform.position).normalized, out hitInfo, 100, damagedLayer, QueryTriggerInteraction.UseGlobal)) {
             Debug.Log("Raycast hit");
-            hitInfo.collider.transform.GetComponent<Actor>().TakeDamage(25);
+            hitInfo.collider.transform.GetComponent<Actor>().TakeDamage(10);
         }
     }
 
