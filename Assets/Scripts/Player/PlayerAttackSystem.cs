@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerAttackSystem : MonoBehaviour
@@ -8,6 +9,10 @@ public class PlayerAttackSystem : MonoBehaviour
     public LayerMask damagedLayer;
     public PlayerAnimations playerAnimations;
     public Movement movement;
+    public int bullets = 6;
+    float reloadTime = 2.0f;
+    public float timeReloading;
+    public bool canFire = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,16 +32,27 @@ public class PlayerAttackSystem : MonoBehaviour
             Slash();
         }
 
-        if (Input.GetMouseButtonDown(1)) {
+        if (bullets <= 0) {
             
-            GunAction();
+            timeReloading += Time.deltaTime;
+            if (timeReloading > reloadTime) {
+                timeReloading = 0;
+                bullets = 6;
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1) && canFire) {
+            
+            if (bullets > 0 ) {
+                GunAction();
+            }
 
         }
     }
 
     void GunAction() {
         playerAnimations.anim.CrossFade("gun_fire", 0, 0);
-
+        bullets--;
         Debug.Log("Fire");
         RaycastHit hitInfo;
         Ray ray = new(transform.position, (cursor.position + new Vector3(0, 1, 0) - transform.position).normalized);

@@ -93,7 +93,23 @@ ModelImporter:
           rotationOrder: 4
       events:
       - time: 0
+        functionName: ToggleGunCanFire
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
         functionName: MuzzleFlashHandler
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 1
+        functionName: ToggleGunCanFire
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
           type: 3}
@@ -173,6 +189,14 @@ ModelImporter:
           type: 3}
         floatParameter: 0
         intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: ToggleGunCanFire
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 55125cb38b0c00c47b00ec7d4cbd6625,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
         messageOptions: 0
       transformMask: []
       maskType: 3

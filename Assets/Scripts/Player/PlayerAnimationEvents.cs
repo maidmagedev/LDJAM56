@@ -9,6 +9,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     [SerializeField] Material hatchetSmear;
     public Animator animator;
     [SerializeField] PlayerOrientation playerOrientation;
+    [SerializeField] PlayerAttackSystem playerAttackSystem;
     [SerializeField] Movement movement;
     bool muzzleHandler;
     bool smearHandler;
@@ -106,5 +107,9 @@ public class PlayerAnimationEvents : MonoBehaviour
     void SetDamageTriggerActive(int setting) {
         playerDamageTrigger.SetActive(setting == 1);
 
+    }
+
+    void ToggleGunCanFire(int on) {
+        playerAttackSystem.canFire = on == 1;
     }
 }

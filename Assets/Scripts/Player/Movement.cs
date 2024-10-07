@@ -23,11 +23,13 @@ public class Movement : MonoBehaviour
 
     public bool allowMovement = true;
     public bool isDashing;
+    public int dashCount;
     
     // Start is called before the first frame update
     void Start()
     {
         if (playerHealth == null) playerHealth = FindObjectOfType<PlayerHealth>();
+        dashCount = 3;
     }
 
     // Update is called once per frame
@@ -58,7 +60,7 @@ public class Movement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
         
-        if (Input.GetKeyDown(KeyCode.Space) && !isDashing) {
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing && dashCount > 0) {
             StartCoroutine(Dash());
         }
     }
@@ -73,6 +75,7 @@ public class Movement : MonoBehaviour
     }
 
     IEnumerator Dash() {
+        dashCount--;
         isDashing = true;
         float elapsedTime = 0.0f;
         
@@ -87,5 +90,11 @@ public class Movement : MonoBehaviour
         }
         playerHealth.invuln = false;
         isDashing = false;
+        StartCoroutine(DashReturn());
+    }
+
+    IEnumerator DashReturn() {
+        yield return new WaitForSeconds(2.75f);
+        dashCount++;
     }
 }
