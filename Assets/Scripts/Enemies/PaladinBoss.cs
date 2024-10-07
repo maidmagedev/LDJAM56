@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 public class PaladinBoss : Actor
@@ -22,6 +23,11 @@ public class PaladinBoss : Actor
     float targetIdleTime = 1.0f;
     public bool JumpAttackMovement;
 
+    public int clericWavesSpawned = 0;
+    public List<GameObject> clericgroups;
+    public GameObject protip;
+    public GameObject winner;
+
     public override void OnTakeDamage(float damage)
     {
         if (!isAlive) return;
@@ -33,6 +39,7 @@ public class PaladinBoss : Actor
     public override void OnDeath()
     {
         anim.CrossFade("Die", 0, 0);
+        winner.SetActive(true);
     }
 
     // Start is called before the first frame update
@@ -45,6 +52,20 @@ public class PaladinBoss : Actor
     // Update is called once per frame
     void Update()
     {
+        // at 50% HP, spawn a wave of clerics to heal the paladin.
+        if (clericWavesSpawned == 0 && currHealth < (maxHealth * 0.5f)) {
+            clericWavesSpawned = 1;
+            clericgroups[0].SetActive(true);
+            protip.SetActive(true);
+        }
+
+        // at 25% HP, spawn a second wave of clerics to heal the paladin.
+        if (clericWavesSpawned == 1 && currHealth < (maxHealth * 0.25f)) {
+            clericWavesSpawned = 2;
+            clericgroups[1].SetActive(true);
+        }
+
+
         if (!isAlive) return;
         if (mode == Mode.idling) {
             idlingTime += Time.deltaTime;
